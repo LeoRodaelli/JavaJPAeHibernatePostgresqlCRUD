@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 public class ProdutoDAO {
-
+    //CLASSE DAO (PADRAO DATA ACCESS OBJECT) - SERVE PARA ISOLAR O CODIGO DE ACESSO AO BANCO DE DADOS
     private EntityManager em;
 
     //construtor (injeção de dependencias) => nao deixar a classe DAO ser responsavel por criar e gerenciar o entity manager
@@ -30,7 +30,7 @@ public class ProdutoDAO {
         this.em.remove(produto);
     }
 
-    public Produto buscarPorId(Long id) {
+    public Produto buscarPorId(int id) {
         return em.find(Produto.class, id);
     }
 
@@ -47,8 +47,7 @@ public class ProdutoDAO {
     }
 
     public List<Produto> buscarPorNomeDaCategoria(String nome) {
-        String jpql = "SELECT p FROM Produto p WHERE p.categoria.nome = :nome";
-        return em.createQuery(jpql, Produto.class)
+        return em.createNamedQuery("Produto.produtosPorCategoria", Produto.class)
                 .setParameter("nome", nome)
                 .getResultList();
     }

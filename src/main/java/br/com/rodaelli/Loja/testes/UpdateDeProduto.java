@@ -25,9 +25,8 @@ public class UpdateDeProduto {
         em.flush();
         em.clear();
 
-        //merge faz um select no bd, e depois atribui a celulares o retorno do merge
         celulares = em.merge(celulares);
-        celulares.setNome("567");
+        celulares.setNome("Xiaomi");
         em.flush();
     }
 }

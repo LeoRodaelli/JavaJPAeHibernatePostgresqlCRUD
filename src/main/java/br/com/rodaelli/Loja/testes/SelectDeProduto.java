@@ -19,8 +19,8 @@ public class SelectDeProduto {
         EntityManager em = JPAutil.getEntityManager();
         ProdutoDAO produtoDAO = new ProdutoDAO(em);
 
-        Produto p = produtoDAO.buscarPorId(1l);
-        System.out.println(p.getPreco());
+        Produto p = produtoDAO.buscarPorId(30);
+        System.out.println("O nome do produto desejado é: " + p.getNome() + " e o preço do produto é: " + p.getPreco());
 
         List<Produto> todos = produtoDAO.buscarTodos();
         todos.forEach(p2 -> System.out.println(p2.getNome()));

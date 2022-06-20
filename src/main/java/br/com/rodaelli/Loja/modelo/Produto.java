@@ -6,18 +6,21 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "produtos")
+@NamedQuery(name = "Produto.produtosPorCategoria",
+        query = "SELECT p FROM Produto p WHERE p.categoria.nome = :nome")
 public class Produto {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
     private String nome;
     private String descricao;
     private BigDecimal preco;
     private LocalDate dataCadastro = LocalDate.now();
 
     //cardinalidade ManyToOne == (n-1)
-    @ManyToOne
+    //fetch -> performance da query (consulta mais rapida)
+    @ManyToOne(fetch = FetchType.LAZY)
     private Categoria categoria;
 
 
@@ -33,11 +36,11 @@ public class Produto {
 
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

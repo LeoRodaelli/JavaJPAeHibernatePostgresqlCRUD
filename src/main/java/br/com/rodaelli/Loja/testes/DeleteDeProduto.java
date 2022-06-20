@@ -17,25 +17,16 @@ import static br.com.rodaelli.Loja.testes.CadastroDeProduto.cadastrarProduto;
 public class DeleteDeProduto {
     public static void main(String[] args) {
 
-        Produto celular = new Produto();
-        Categoria celulares = new Categoria();
-
-        //SIMULAÇÃO USUARIO EM UMA APLICAÇÃO
-
-
         EntityManager em = JPAutil.getEntityManager();
-        ProdutoDAO produtoDAO = new ProdutoDAO(em);
         CategoriaDAO categoriaDAO = new CategoriaDAO(em);
 
-        //inicia transação
+
         em.getTransaction().begin();
+        Produto produto = em.find(Produto.class, 1L);
+        em.flush();
+        em.remove(produto);
+        em.flush();
 
-        //operações: (delete)
-        produtoDAO.remover(celular);
-        categoriaDAO.remover(celulares);
-
-        em.getTransaction().commit();
-        em.close();
 
     }
 }

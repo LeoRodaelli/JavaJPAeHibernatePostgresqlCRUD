@@ -21,8 +21,8 @@ public class CadastroDeProduto {
         Categoria celulares = new Categoria("CELULARES");
 
         //SIMULAÇÃO USUARIO EM UMA APLICAÇÃO
-        Produto celular = new Produto("Iphone 7", "Muito legal",
-                new BigDecimal("770"), celulares);
+        Produto celular = new Produto("AlphaFone", "Inovador",
+                new BigDecimal("2700"), celulares);
 
 
         EntityManager em = JPAutil.getEntityManager();
@@ -36,6 +36,7 @@ public class CadastroDeProduto {
         //operações: (insert)
         categoriaDAO.cadastrar(celulares);
         produtoDAO.cadastrar(celular);
+
 
         em.getTransaction().commit();
         em.close();
