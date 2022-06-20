@@ -6,24 +6,20 @@ import javax.persistence.*;
 @Table(name = "categorias")
 public class Categoria {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    private String nome;
-
-    public Categoria(String nome) {
-        this.nome = nome;
-    }
+    //2 pk (chave composta)
+    @EmbeddedId
+    private CategoriaId id;
 
     public Categoria() {
 
     }
 
-    public String getNome() {
-        return nome;
+    public Categoria(String nome) {
+        this.id = new CategoriaId(nome, "xpto");
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public String getNome() {
+        return this.id.getNome();
     }
+
 }

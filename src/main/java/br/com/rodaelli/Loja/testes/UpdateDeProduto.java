@@ -4,6 +4,7 @@ import br.com.rodaelli.Loja.DAO.CategoriaDAO;
 import br.com.rodaelli.Loja.DAO.ProdutoDAO;
 import br.com.rodaelli.Loja.modelo.Categoria;
 
+import br.com.rodaelli.Loja.modelo.CategoriaId;
 import br.com.rodaelli.Loja.modelo.Produto;
 import br.com.rodaelli.Loja.util.JPAutil;
 
@@ -20,13 +21,13 @@ public class UpdateDeProduto {
         em.getTransaction().begin();
 
         em.persist(celulares);
-        celulares.setNome("AlphaFone");
+
 
         em.flush();
         em.clear();
 
         celulares = em.merge(celulares);
-        celulares.setNome("Xiaomi");
+
         em.flush();
     }
 }

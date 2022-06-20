@@ -18,6 +18,4 @@ public class JPAutil {
     public static EntityManager getEntityManager() {
         return FACTORY.createEntityManager();
     }
-
-
 }
